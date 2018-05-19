@@ -41,6 +41,10 @@ Template.propose.events({
     // console.log(event);
     // return false;
     const checked = event.target.firstElementChild;
+    if(!checked)
+    {
+      console.log("Checked is null");
+    }
     if (checked.style.display === 'none' || !checked.style.display) {
       checked.style.display = 'block';
       if (event.target.id === 'savebox') {
@@ -49,14 +53,17 @@ Template.propose.events({
         document.getElementById('anoncheck').style.display = 'none';
       } else if (event.target.id === 'anonbox') {
         $('#topinputcontainer').slideUp();
-        $('#questionnameinput').val('');
-        $('#questionemailinput').val('');
+        // $('#questionnameinput').val('');
+        // $('#questionemailinput').val('');
+        $('#bottominputcontainer').slideUp();
+        document.getElementById('savecheck').style.display = 'none';
       }
     } else {
       checked.style.display = 'none';
       if (event.target.id === 'savebox') {
         $('#bottominputcontainer').slideUp();
         $('#topinputcontainer').slideUp();
+        document.getElementById('savecheck').style.display = 'none';
         document.getElementById('anoncheck').style.display = 'block';
       } else if (event.target.id === 'anonbox') {
         if (Meteor.user()) {
@@ -64,8 +71,11 @@ Template.propose.events({
           $('#questionemailinput').val(Meteor.user().emails[0].address);
         } else {
           $('#topinputcontainer').slideDown();
-          $('#questionnameinput').val('');
-          $('#questionemailinput').val('');
+          // $('#questionnameinput').val('');
+          // $('#questionemailinput').val('');
+          $('#bottominputcontainer').slideDown();
+          document.getElementById('savecheck').style.display = 'block';
+          console.log("Unchecking anonbox");
         }
       }
     }
