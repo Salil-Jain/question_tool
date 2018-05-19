@@ -37,80 +37,48 @@ Template.propose.events({
       $('#buttonarea').click();
     }
   },
-  'click .checkbox': function (event, template) {
-    // console.log(event);
-    // return false;
+  'click .checkbox': function (event, template) { // onclicking the boxes
     const checked = event.target.firstElementChild;
-    if(!checked)
-    {
-      console.log("Checked is null");
-    }
-    if (checked.style.display === 'none' || !checked.style.display) {
-      checked.style.display = 'block';
-      if (event.target.id === 'savebox') {
-        $('#bottominputcontainer').slideDown();
-        $('#topinputcontainer').slideDown();
-        document.getElementById('anoncheck').style.display = 'none';
-      } else if (event.target.id === 'anonbox') {
-        $('#topinputcontainer').slideUp();
-        // $('#questionnameinput').val('');
-        // $('#questionemailinput').val('');
-        $('#bottominputcontainer').slideUp();
-        document.getElementById('savecheck').style.display = 'none';
-      }
-    } else {
-      checked.style.display = 'none';
-      if (event.target.id === 'savebox') {
-        $('#bottominputcontainer').slideUp();
-        $('#topinputcontainer').slideUp();
-        document.getElementById('savecheck').style.display = 'none';
-        document.getElementById('anoncheck').style.display = 'block';
-      } else if (event.target.id === 'anonbox') {
-        if (Meteor.user()) {
-          $('#questionnameinput').val(Meteor.user().profile.name);
-          $('#questionemailinput').val(Meteor.user().emails[0].address);
-        } else {
-          $('#topinputcontainer').slideDown();
-          // $('#questionnameinput').val('');
-          // $('#questionemailinput').val('');
-          $('#bottominputcontainer').slideDown();
-          document.getElementById('savecheck').style.display = 'block';
-          console.log("Unchecking anonbox");
-        }
-      }
-    }
-  },
-  'click .checked': function (event, template) {
-    // console.log(event);
-    // return false;
-    const checked = event.target;
-    if (checked.style.display === 'none' || !checked.style.display) {
-      if (event.target.id === 'savecheck') {
-        $('#bottominputcontainer').slideDown();
-        $('#topinputcontainer').slideDown();
-        document.getElementById('anoncheck').style.display = 'none';
-      } else if (event.target.id === 'anoncheck') {
-        $('#topinputcontainer').slideUp();
+    // checked becomes null when the user unchecks a box which was checked before
+    
+    if(Meteor.user()) { // If the user is logged in
+      if(checked != null) { // user has checked the box
+        checked.style.display = 'block';
         $('#questionnameinput').val('');
         $('#questionemailinput').val('');
+      } else { //user has unchecked the box
+        document.getElementById('anoncheck').style.display = 'none';
+        $('#questionnameinput').val(Meteor.user().profile.name);
+        $('#questionemailinput').val(Meteor.user().emails[0].address);
       }
-      checked.style.display = 'block';
-    } else {
-      if (event.target.id === 'savecheck') {
-        $('#bottominputcontainer').slideUp();
-        $('#topinputcontainer').slideUp();
-        document.getElementById('anoncheck').style.display = 'block';
-      } else if (event.target.id === 'anoncheck') {
-        if (Meteor.user()) {
-          $('#questionnameinput').val(Meteor.user().profile.name);
-          $('#questionemailinput').val(Meteor.user().emails[0].address);
-        } else {
+    } else { // If the user is logged out
+      if(checked != null) { // user has checked a previously unchecked box
+        checked.style.display = 'block';
+        if(event.target.id === 'savebox') {
+          $('#bottominputcontainer').slideDown();
           $('#topinputcontainer').slideDown();
+          document.getElementById('anoncheck').style.display = 'none';
+        } else if (event.target.id === 'anonbox') {
+          $('#topinputcontainer').slideUp();
           $('#questionnameinput').val('');
           $('#questionemailinput').val('');
+          $('#bottominputcontainer').slideUp();
+          document.getElementById('savecheck').style.display = 'none';
+        }
+      } else { // user has unchecked a previously checked box
+        if(event.target.id === 'savecheck') { // Unchecked "Save your information" hence "Post as anonymous" gets checked
+          $('#bottominputcontainer').slideUp();
+          $('#topinputcontainer').slideUp();
+          document.getElementById('savecheck').style.display = 'none';
+          document.getElementById('anoncheck').style.display = 'block';
+        } else if (event.target.id === 'anoncheck') { // Unchecked "Post as anonymous" hence "Save your information" gets checked
+            $('#topinputcontainer').slideDown();
+            $('#questionnameinput').val('');
+            $('#questionemailinput').val('');
+            $('#bottominputcontainer').slideDown();
+            document.getElementById('savecheck').style.display = 'block';
         }
       }
-      checked.style.display = 'none';
     }
   },
   'click #buttonarea': function (event, template) {
