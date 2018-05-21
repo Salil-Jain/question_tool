@@ -49,6 +49,10 @@ Template.add.events({
         return false;
       }
     }
+    if (modBoxes[modBoxes.length - 1].value === Meteor.user().emails[0].address) {
+      showModsError('Email ID was already added as a admin.');
+      return false;
+    }
     if (modBoxes.length >= 4) {
       showModsError("You've reached max of 4 moderators.");
       return false;
