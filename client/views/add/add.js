@@ -93,6 +93,13 @@ Template.add.events({
     }
     Meteor.call('addMods', mods, template.data._id, (error, result) => {
       // If the result is an object, there was an error
+      if (error) {
+        if (error.error === 'invalidEmail') {
+          showModsError('Please enter valid email addresses');          
+        }
+        console.log("Error prompted: ",error.error);
+        return false;
+      }
       if (typeof result === 'object') {
         // Alert the error
         for (let i = 0; i < result.length; i++) {

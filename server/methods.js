@@ -256,7 +256,11 @@ Meteor.methods({
           },
         }, (error, count, status) => {
           if (error) {
-            keys = error.invalidKeys;
+            console.log("1: ",error.message);
+            throw new Meteor.Error("invalidEmail", error.message);
+            // keys = error.invalidKeys;
+            console.log("2");
+            // console.log("Error is: ", error);
           }
         });
       } else {
