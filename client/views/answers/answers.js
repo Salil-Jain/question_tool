@@ -2,8 +2,10 @@ import { Questions, Answers } from '/lib/common.js';
 
 Template.answers.onRendered(() => {
   // When the template is rendered, sets the document title
-  $('.formcontainer').hide().fadeIn(400);
-  $('#darker').hide().fadeIn(400);
+  // $('.formcontainer').hide().fadeIn(400);
+  $('.formcontainer').show("slide", {direction: "right"}, 400);
+  // $('#darker').hide().fadeIn(400);
+  $('#darker').hide();
 });
 
 Template.answers.helpers({

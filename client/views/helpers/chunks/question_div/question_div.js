@@ -91,6 +91,9 @@ Template.question_div.events({
   },
   'click .showreplies': function (event, template) {
     const parentNode = document.getElementById('main-wrapper');
+    // side div start
+    $(".masonary-wrapper").width("80%");
+    // side div end
     popoverTemplate = Blaze.renderWithData(Template.answers, template.data._id, parentNode);
   },
   'click .adminquestionmodify': function (event, template) {

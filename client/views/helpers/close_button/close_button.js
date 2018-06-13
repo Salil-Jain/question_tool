@@ -17,6 +17,9 @@ Template.close_button.onCreated(function () {
 Template.close_button.events({
   'click .closecontainer': function (event, template) {
     removePopover();
+    // side start
+    $(".masonary-wrapper").width("100%");
+    // side end
   },
 });
 /* eslint-disable func-names, no-unused-vars */

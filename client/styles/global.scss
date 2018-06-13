@@ -59,8 +59,14 @@ a {
 
 .masonary-wrapper {
   padding: 0;
-  margin: 0 auto;
+  margin: 0;
 }
+
+@media (min-width: 81%) {
+	.masonary-wrapper {
+	 	margin: 0 auto;
+	}
+} 
 
 .container {
   display: flex;
