@@ -5,6 +5,18 @@
       <!-- {{# if hasAnswers}}
         {{> answers_list}}
       {{/if}} -->
+      <div class="asked-by">
+        {{#if poster}}
+        <span class="poser">
+          {{#if email}}
+            <a href="mailto:{{email}}">{{poster}}</a>
+          {{else}}
+            {{poster}}
+          {{/if}}
+        </span>
+        {{/if}}
+        posted <span class="smallcaps" title="{{date_format timeorder}}">{{time_format timeorder}}</span>
+      </div>
       {{#if hasAnswers}}
       <p class="hiddenMessage showreplies link" id="{{_id}}">show {{answersCount}}</p>
       {{/if}}
@@ -57,18 +69,6 @@
           <span class="image-icon facebookbutton link" title="Share on Facebook"></span>
           <span class="image-icon twitterbutton link" title="Share on Twitter"></span>
         </span>
-      </div>
-      <div class="asked-by">
-        {{#if poster}}
-        <span class="poser">
-          {{#if email}}
-            <a href="mailto:{{email}}">{{poster}}</a>
-          {{else}}
-            {{poster}}
-          {{/if}}
-        </span>
-        {{/if}}
-        posted <span class="smallcaps" title="{{date_format timeorder}}">{{time_format timeorder}}</span>
       </div>
     </div>
   </div>
