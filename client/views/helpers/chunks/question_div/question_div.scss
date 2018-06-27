@@ -18,6 +18,28 @@ $popular-question-color: #f1c40f;
     page-break-inside: avoid;
     break-inside: avoid;
   }
+
+  &.popular-question {
+    border-color: $popular-question-color;
+  }
+
+  &.hidden-question {
+    border-color: $hidden-question-color !important;
+    opacity: $hidden-question-opacity;
+    transition-duration: 0.5s;
+  }
+
+  &.hidden-question:hover {
+    opacity: 1;
+  }
+
+  &.new-question {
+    border-color: $new-question-color;
+  }
+
+  &.stale-question {
+    border-color: $stale-question-color;
+  }
 }
 
 .upvoteButton {
@@ -45,7 +67,7 @@ $popular-question-color: #f1c40f;
     margin-bottom: -2px;
   }
 
-  &.popular-question {
+  /*&.popular-question {
     border-color: $popular-question-color;
   }
 
@@ -65,7 +87,7 @@ $popular-question-color: #f1c40f;
 
   &.stale-question {
     border-color: $stale-question-color;
-  }
+  }*/
 }
 
 
@@ -415,4 +437,18 @@ $popular-question-color: #f1c40f;
     width: 14px;
     top: -10px;
     right: 0px;
+}
+
+.shareDropdown {
+  display: none;
+  position: absolute;
+  bottom: 20px;
+  width: 32px;
+  text-align: center;
+  -webkit-animation-duration: 4s;
+  animation-duration: 4s;
+  border: 1px solid;
+}
+
+.shareDropdown > span {
 }

@@ -52,6 +52,9 @@ Template.question_div.helpers({
 });
 
 Template.question_div.events({
+  'click .sharing': function (event, template) {
+    $(event.target.children).toggle();
+  },
   'click .replybutton': function (event, template) {
     template.replyCount.set(0);
     $('.replybottom').slideUp();

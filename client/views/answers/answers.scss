@@ -41,3 +41,25 @@
 	font-weight: 600;
 	float: right;
 }
+
+.replyBoxArea {
+  	/*margin-top: 8px;
+  	margin-left: 1em;
+  	margin-right: 1em;*/
+  	border-radius: 4px;
+	display: block;
+	border: 1px solid #aaa;
+	color: #666;
+	font-weight: 300;
+	font-size: 14px;
+	height: 65px;
+	outline: 0;
+	resize: none;
+  	width: auto;
+  	padding: 8px 10px;
+  	width: 100%;
+}
+
+.replyBox {
+	padding: 1em;
+}

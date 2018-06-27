@@ -1,9 +1,9 @@
 <template name="question_div">
-  <div class="question-wrapper">
+  <div class="question-wrapper question-{{instanceid}} {{#if popular}}popular-question{{else}}{{age_marker}}{{/if}} {{#if isDisabled}}hidden-question{{/if}}">
     <div class="upvoteButton">
       <a class="voteright {{shade}}" id="{{_id}}"><span class="triangle"></span><br>{{voteCount}}</a>
     </div>
-    <div id="{{_id}}" class="question question-{{instanceid}} {{#if popular}}popular-question{{else}}{{age_marker}}{{/if}} {{#if isDisabled}}hidden-question{{/if}}">
+    <div id="{{_id}}" class="question">
       <p class="questiontext">{{{text}}}</p>
       <!-- {{# if hasAnswers}}
         {{> answers_list}}
@@ -71,11 +71,11 @@
           {{/if}}
         </span>
         <span class="sharing">
-          share
-          <div id="shareDropdown">
-            <!-- <span class="image-icon facebookbutton link" title="Share on Facebook"></span>
-            <span class="image-icon twitterbutton link" title="Share on Twitter"></span> -->
+          <div class="shareDropdown">
+            <span class="image-icon facebookbutton link" title="Share on Facebook"></span><br>
+            <span class="image-icon twitterbutton link" title="Share on Twitter"></span>
           </div>
+          share
           <!-- <img src="https://image.flaticon.com/icons/svg/14/14539.svg" style="width:14px;height:14px"> -->
           <!-- <span class="image-icon facebookbutton link" title="Share on Facebook"></span>
           <span class="image-icon twitterbutton link" title="Share on Twitter"></span> -->
