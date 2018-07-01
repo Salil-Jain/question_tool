@@ -7,6 +7,9 @@ Template.answers.onRendered(() => {
 });
 
 Template.answers.helpers({
+  returnID() {
+    return Template.currentData();
+  },
   question() {
     const id = Template.currentData();
     return Questions.findOne({ _id: id });

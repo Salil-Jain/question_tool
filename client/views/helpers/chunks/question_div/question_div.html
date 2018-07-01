@@ -25,7 +25,7 @@
         posted <span class="smallcaps" title="{{date_format timeorder}}">{{time_format timeorder}}</span>
       </div>
       <div class="replybottom" id="down{{_id}}">
-        <textarea id="text{{_id}}" class="replyarea" placeholder="Type a response..." maxlength="{{responseLength}}"></textarea>
+        <textarea id="text{{_id}}" class="replyarea" placeholder="Type a reply..." maxlength="{{responseLength}}"></textarea>
         <div style="margin: 8px 0">
           <span class="replycounter">
             {{replyCount}}/{{responseLength}}
@@ -54,7 +54,7 @@
       </div>
       <div class="question-toolbar">
         <span class="vote-and-options">
-          <!-- <span class="replybutton link" id="reply{{_id}}">Reply</span> -->
+          <span class="replybutton link" id="reply{{_id}}">Reply</span>
           {{#if adminButtons}}
           <span class="adminquestionhide link" id="{{_id}}">
             {{#if isDisabled}}Unhide{{else}}Hide{{/if}}

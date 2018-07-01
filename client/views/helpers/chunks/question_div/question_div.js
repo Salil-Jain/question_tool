@@ -4,6 +4,7 @@ Template.question_div.onCreated(function () {
   this.replyCount = new ReactiveVar(0);
 });
 
+
 Template.question_div.helpers({
   isPoster() {
     return Meteor.user() && Meteor.user().emails[0].address === this.email && this.posterLoggedIn;
@@ -73,7 +74,7 @@ Template.question_div.events({
         Blaze.remove(replyError);
       }
       document.getElementById('reply' + theID).innerHTML = 'Reply';
-      $('#down' + theID).slideUp();
+      // $('#down' + theID).slideUp();
     }
   },
   'keyup .replyarea': function (event, template) {

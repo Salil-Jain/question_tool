@@ -62,7 +62,7 @@ Meteor.methods({
   answer(instanceid, answer, questionID, anonymous) {
     let keys = '';
     answer.replace(/<(?:.|\n)*?>/gm, '');
-    // Retrieves the current quesetion from the DB (if one exists)
+    // Retrieves the current question from the DB (if one exists)
     let posterName;
     let email;
 

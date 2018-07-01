@@ -543,11 +543,11 @@ Template.list.events({
       checked.style.display = 'none';
     }
   },
-  'click .replybottombutton': function (event, template) {
+  'click .replysubmitbutton': function (event, template) {
     // Retrieves data from form
     const theID = event.target.id;
     const anon = false;
-    const answer = document.getElementById('text' + theID).value;
+    const answer = document.getElementById('answer' + theID).value;
 
     // Calls a server-side method to answer a question and update DBs
     Meteor.call('answer', template.data._id, answer, theID, anon, (e, r) => {
@@ -573,6 +573,8 @@ Template.list.events({
       document.getElementById('reply' + theID).innerHTML = 'Reply';
       document.getElementById('text' + theID).value = '';
       $('#down' + theID).slideUp();
+      $('.formcontainer').fadeOut(400);
+      $('#darker').fadeOut(400);
     });
   },
 
