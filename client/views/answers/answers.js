@@ -62,18 +62,18 @@ Template.answers.events({
     });
   },
   'keyup .replyBoxArea': function (event, template) {
-    console.log("event.target here is: ", event.target);
     // check if URL is present in the text
     const urlRegex = /(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/g;
     const found = event.target.value.match(urlRegex);
     let total = 0;
-    console.log("found is: ", found);
     if (found) {
       let totalURL = 0;
       const sumOfLengths = (a, b) => a + b.length;
       totalURL = found.reduce(sumOfLengths, 0);
       total = (event.target.value.length - totalURL) + found.length;
-      $(event.target).attr('maxlength', Number(Instances.findOne({ _id: template.data.instanceid }).max_response + totalURL - found.length));
+      const questionId = template.data;
+      const instanceId = Questions.findOne({ _id: questionId }).instanceid;
+      $(event.target).attr('maxlength', Number(Instances.findOne({ _id: instanceId }).max_response + totalURL - found.length));
     } else {
       total = event.target.value.length;
     }

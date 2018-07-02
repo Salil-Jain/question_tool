@@ -63,23 +63,6 @@ Template.question_div.events({
       // $('#down' + theID).slideUp();
     }
   },
-  'keyup .replyarea': function (event, template) {
-    console.log("event.target is: ", event.target);
-    // check if URL is present in the text
-    // const urlRegex = /(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/g;
-    // const found = event.target.value.match(urlRegex);
-    // let total = 0;
-    // if (found) {
-    //   let totalURL = 0;
-    //   const sumOfLengths = (a, b) => a + b.length;
-    //   totalURL = found.reduce(sumOfLengths, 0);
-    //   total = (event.target.value.length - totalURL) + found.length;
-    //   $(event.target).attr('maxlength', Number(Instances.findOne({ _id: template.data.instanceid }).max_response + totalURL - found.length));
-    // } else {
-    //   total = event.target.value.length;
-    // }
-    // template.replyCount.set(total);
-  },
   'click .showreplies': function (event, template) {
     const parentNode = document.getElementById('main-wrapper');
     popoverTemplate = Blaze.renderWithData(Template.answers, template.data._id, parentNode);

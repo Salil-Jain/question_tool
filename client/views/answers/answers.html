@@ -32,7 +32,9 @@
     <div class="replyBox">
       <textarea class="replyBoxArea" id=answer{{returnID}} placeholder="type a response..." maxlength="{{responseLength}}"></textarea>
     </div>
-    {{replyCount}}/{{responseLength}}
+    <span class="replycounter">
+      {{replyCount}}/{{responseLength}}
+    </span>
     <span class="replysubmitbutton" id={{returnID}}>Submit</span>
 	</div>
 </template>
