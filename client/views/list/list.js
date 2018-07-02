@@ -574,7 +574,9 @@ Template.list.events({
       document.getElementById('text' + theID).value = '';
       $('#down' + theID).slideUp();
       $('.formcontainer').fadeOut(400);
-      $('#darker').fadeOut(400);
+      $('#darker').fadeOut(400, () => {
+        Blaze.remove(popoverTemplate);
+      });
     });
   },
 

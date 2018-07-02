@@ -1,4 +1,8 @@
-import { Questions, Answers } from '/lib/common.js';
+import { Questions, Answers, Instances } from '/lib/common.js';
+
+Template.answers.onCreated(function () {
+  this.replyCount = new ReactiveVar(0);
+});
 
 Template.answers.onRendered(() => {
   // When the template is rendered, sets the document title
@@ -9,6 +13,16 @@ Template.answers.onRendered(() => {
 Template.answers.helpers({
   returnID() {
     return Template.currentData();
+  },
+  replyCount() {
+    return Template.instance().replyCount.get();
+  },
+  responseLength() {
+    // to return the maximum response length
+    const id = Template.currentData();
+    const instanceId = Questions.findOne({ _id: id }).instanceid;
+    const toReturn = Instances.findOne({_id: instanceId}).max_response;
+    return toReturn;
   },
   question() {
     const id = Template.currentData();
@@ -46,6 +60,24 @@ Template.answers.events({
     $('#darker').fadeOut(400, () => {
       Blaze.remove(popoverTemplate);
     });
+  },
+  'keyup .replyBoxArea': function (event, template) {
+    console.log("event.target here is: ", event.target);
+    // check if URL is present in the text
+    const urlRegex = /(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/g;
+    const found = event.target.value.match(urlRegex);
+    let total = 0;
+    console.log("found is: ", found);
+    if (found) {
+      let totalURL = 0;
+      const sumOfLengths = (a, b) => a + b.length;
+      totalURL = found.reduce(sumOfLengths, 0);
+      total = (event.target.value.length - totalURL) + found.length;
+      $(event.target).attr('maxlength', Number(Instances.findOne({ _id: template.data.instanceid }).max_response + totalURL - found.length));
+    } else {
+      total = event.target.value.length;
+    }
+    template.replyCount.set(total);
   },
 });
 /* eslint-enable func-names, no-unused-vars */

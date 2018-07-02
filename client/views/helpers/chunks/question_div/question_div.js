@@ -1,21 +1,8 @@
 import { Votes, Answers, Instances, Questions } from '/lib/common.js';
 
-Template.question_div.onCreated(function () {
-  this.replyCount = new ReactiveVar(0);
-});
-
-
 Template.question_div.helpers({
   isPoster() {
     return Meteor.user() && Meteor.user().emails[0].address === this.email && this.posterLoggedIn;
-  },
-
-  replyCount() {
-    return Template.instance().replyCount.get();
-  },
-
-  responseLength() {
-    return Instances.findOne({ _id: this.instanceid }).max_response;
   },
 
   isDisabled() {
@@ -57,7 +44,6 @@ Template.question_div.events({
     $(event.target.children).toggle();
   },
   'click .replybutton': function (event, template) {
-    template.replyCount.set(0);
     $('.replybottom').slideUp();
     $('.replyarea').val('');
     $('.replybutton').html('Reply');
@@ -78,20 +64,21 @@ Template.question_div.events({
     }
   },
   'keyup .replyarea': function (event, template) {
-    const urlRegex = /(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/g;
-    const found = event.target.value.match(urlRegex);
-    let total = 0;
-    if (found) {
-      let totalURL = 0;
-      for (let f = 0; f < found.length; f++) {
-        totalURL += found[f].length;
-      }
-      total = (event.target.value.length - totalURL) + found.length;
-      $(event.target).attr('maxlength', Number(Instances.findOne({ _id: template.data.instanceid }).max_response + totalURL - found.length));
-    } else {
-      total = event.target.value.length;
-    }
-    template.replyCount.set(total);
+    console.log("event.target is: ", event.target);
+    // check if URL is present in the text
+    // const urlRegex = /(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/g;
+    // const found = event.target.value.match(urlRegex);
+    // let total = 0;
+    // if (found) {
+    //   let totalURL = 0;
+    //   const sumOfLengths = (a, b) => a + b.length;
+    //   totalURL = found.reduce(sumOfLengths, 0);
+    //   total = (event.target.value.length - totalURL) + found.length;
+    //   $(event.target).attr('maxlength', Number(Instances.findOne({ _id: template.data.instanceid }).max_response + totalURL - found.length));
+    // } else {
+    //   total = event.target.value.length;
+    // }
+    // template.replyCount.set(total);
   },
   'click .showreplies': function (event, template) {
     const parentNode = document.getElementById('main-wrapper');
