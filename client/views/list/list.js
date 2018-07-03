@@ -97,8 +97,8 @@ function enableDragging(id) {
         },
         // When dropped on top of another div, redirect to the /combine page
         ondrop(event) {
-          const id1 = event.relatedTarget.id;
-          const id2 = event.target.id;
+          const id1 = event.relatedTarget.children[1].id;
+          const id2 = event.target.children[1].id;
           const parentNode = document.getElementById('nav');
           Blaze.renderWithData(Template.combine, {
             instanceid: id,
