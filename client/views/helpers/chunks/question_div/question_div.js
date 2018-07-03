@@ -43,26 +43,6 @@ Template.question_div.events({
   'click .sharing': function (event, template) {
     $(event.target.children).toggle();
   },
-  'click .replybutton': function (event, template) {
-    $('.replybottom').slideUp();
-    $('.replyarea').val('');
-    $('.replybutton').html('Reply');
-    const theID = event.target.id.substring(5);
-    const theArea = document.getElementById('down' + theID);
-    if (theArea.style.display === 'none' || !theArea.style.display) {
-      document.getElementById('reply' + theID).innerHTML = 'Close';
-      $('#down' + theID).slideDown(400, function () {
-        $(this).css('display', 'block');
-      });
-      $('#text' + theID).focus();
-    } else {
-      if (typeof replyError !== 'undefined') {
-        Blaze.remove(replyError);
-      }
-      document.getElementById('reply' + theID).innerHTML = 'Reply';
-      // $('#down' + theID).slideUp();
-    }
-  },
   'click .showreplies': function (event, template) {
     const parentNode = document.getElementById('main-wrapper');
     popoverTemplate = Blaze.renderWithData(Template.answers, template.data._id, parentNode);

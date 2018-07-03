@@ -24,22 +24,6 @@
         {{/if}}
         posted <span class="smallcaps" title="{{date_format timeorder}}">{{time_format timeorder}}</span>
       </div>
-      <div class="replybottom" id="down{{_id}}">
-        <textarea id="text{{_id}}" class="replyarea" placeholder="Type a reply..." maxlength="{{responseLength}}"></textarea>
-        <div style="margin: 8px 0">
-          <span class="replycounter">
-            {{replyCount}}/{{responseLength}}
-          </span>
-          {{#if currentUser}}
-          <span class="replybottombutton link" id="{{_id}}">
-            Reply
-          </span>
-          {{/if}}
-          <span class="anon-reply-bottom-button link" id="{{_id}}">
-            Anonymous Reply
-          </span>
-        </div>
-      </div>
       <div class="tagIcon">
         {{#if popular}}
         <span class="image-icon popular-icon" title="Popular"></span>
@@ -50,7 +34,6 @@
       </div>
       <div class="question-toolbar">
         <span class="vote-and-options">
-          <span class="replybutton link" id="reply{{_id}}">Reply</span>
           {{#if adminButtons}}
           <span class="adminquestionhide link" id="{{_id}}">
             {{#if isDisabled}}Unhide{{else}}Hide{{/if}}
