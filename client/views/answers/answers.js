@@ -8,6 +8,7 @@ Template.answers.onRendered(() => {
   // When the template is rendered, sets the document title
   $('.formcontainer').hide().fadeIn(400);
   $('#darker').hide().fadeIn(400);
+  $('#replyadvancedcheck')[0].style.display = 'none';
 });
 
 Template.answers.helpers({

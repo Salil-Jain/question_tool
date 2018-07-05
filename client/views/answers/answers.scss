@@ -66,12 +66,12 @@
 
 .replysubmitbutton {
 	width: 30%;
-	display: block;
+	display: inline-block;
+	float: right;
 	height: 30px;
 	margin: 0px auto;
 	margin-right: 1em;
 	background-color: #2ecc71;
-	margin-top: 10px;
 	margin-bottom: 35px;
 	border-radius: 5px;
 	cursor: pointer;
@@ -91,4 +91,9 @@
 	font-size: 14px;
 	float: left;
 	padding-left: 15px;
+}
+
+.anonymDiv {
+	display: inline-block;
+	margin-top: 10px;
 }
