@@ -546,9 +546,11 @@ Template.list.events({
   'click .replysubmitbutton': function (event, template) {
     // Retrieves data from form
     const theID = event.target.id;
+    // const anonCheckDisp = template.$('#replyadvancedcheck')[0].style.display;
+    // const anon = anonCheckDisp === 'none';
     const anon = false;
     const answer = document.getElementById('answer' + theID).value;
-
+    console.log("here");
     // Calls a server-side method to answer a question and update DBs
     Meteor.call('answer', template.data._id, answer, theID, anon, (e, r) => {
       // If the result is an object, there was an error
