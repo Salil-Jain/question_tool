@@ -96,4 +96,9 @@
 .anonymDiv {
 	display: inline-block;
 	margin-top: 10px;
+	margin-left: 15%;
+
+	> .checkbox {
+		margin-right: 10px;
+	}
 }

@@ -33,6 +33,9 @@
       <textarea class="replyBoxArea" id=answer{{returnID}} placeholder="type a response..." maxlength="{{responseLength}}"></textarea>
     </div>
     <div class="belowReplyBox">
+      <span class="replycounter">
+        {{replyCount}}/{{responseLength}}
+      </span>
       {{#if allowAnonym}}  
         <div class="anonymDiv">  
           <div class="checkbox" id="replyadvancedbox">
@@ -42,9 +45,6 @@
           Reply Anonymously
         </div>
       {{/if}}
-      <span class="replycounter">
-        {{replyCount}}/{{responseLength}}
-      </span>
       <span class="replysubmitbutton" id={{returnID}}>Submit</span>
     </div>
 	</div>

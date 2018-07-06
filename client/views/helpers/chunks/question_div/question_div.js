@@ -18,7 +18,7 @@ Template.question_div.helpers({
     });
     return answers.fetch().length > 0;
   },
-
+  
   answersCount() {
     const count = Answers.find({ qid: this._id }).fetch().length;
     const base = 'repl';
