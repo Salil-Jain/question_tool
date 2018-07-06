@@ -52,6 +52,12 @@ Template.answers.helpers({
 
     return answers;
   },
+  allowAnonym() {
+    const id = Template.currentData();
+    const instanceId = Questions.findOne({ _id: id }).instanceid;
+    const toReturn = Instances.findOne({_id: instanceId}).anonymous;
+    return toReturn;
+  },
 });
 
 /* eslint-disable func-names, no-unused-vars */
