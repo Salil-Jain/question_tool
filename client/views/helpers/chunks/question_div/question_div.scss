@@ -60,6 +60,7 @@ $popular-question-color: #f1c40f;
   border-radius: $border-radius;
   width: 19.5em;
   word-break: break-word;
+  overflow: hidden;
   /*left: 2em;*/
   .image-icon {
     width: 14px;
@@ -470,4 +471,39 @@ $popular-question-color: #f1c40f;
 }
 
 .shareDropdown > span {
+
 }
+
+.corner-ribbon{
+  font-size: 0.7em;
+  width: 60px;
+  background: #e43;
+  position: absolute;
+  top: 15px;
+  left: -40px;
+  text-align: center;
+  line-height: 12px;
+  letter-spacing: 1px;
+  color: #f0f0f0;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.corner-ribbon.sticky{
+  /*position: fixed;*/
+}
+
+.corner-ribbon.shadow{
+  box-shadow: 0 0 3px rgba(0,0,0,.3);
+}
+
+.corner-ribbon.top-right{
+  top: 4px;
+  right: -22px;
+  left: auto;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.corner-ribbon.red{background: #e43;}
+.corner-ribbon.green{background: #2c7;}
