@@ -45,11 +45,34 @@ Template.answers.helpers({
     answers.reverse();
     for (let a = 0; a < answers.length; a++) {
       answers[a].text = answers[a].text.replace(/\B(@\S+)/g, '<strong>$1</strong>');
-      const urlRegex = new RegExp(SimpleSchema.RegEx.Url.source.slice(1, -1), 'ig');
-      answers[a].text = answers[a].text.replace(urlRegex, url =>
-        '<a target="_blank" class="questionLink" rel="nofollow" href="' + url + '">' + url + '</a>');
+      const urlRegex = /(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/g;
+      answers[a].text = answers[a].text.replace(urlRegex, (url) => {
+        let hasPeren = false;
+        let fullURL = url;
+        console.log("url: ", url);
+        console.log("fullURL: ", fullURL);
+        if (url.charAt(url.length - 1) === ')') {
+          url = url.substring(0, url.length - 1);
+          hasPeren = true;
+        }
+        if (url.indexOf('http://') === -1 || url.indexOf('https://') === -1) {
+          fullURL = 'http://' + url;
+        }
+        if (!hasPeren) {
+          return '<a target="_blank" class="questionLink" rel="nofollow" href="' + fullURL + '">' + url + '</a>';
+        }
+        return '<a target="_blank" class="questionLink" rel="nofollow" href="' + fullURL + '">' + url + '</a>)';
+      });
     }
 
+    // answers.reverse();
+    // for (let a = 0; a < answers.length; a++) {
+    //   answers[a].text = answers[a].text.replace(/\B(@\S+)/g, '<strong>$1</strong>');
+    //   const urlRegex = new RegExp(SimpleSchema.RegEx.Url.source.slice(1, -1), 'ig');
+    //   answers[a].text = answers[a].text.replace(urlRegex, url =>
+    //     '<a target="_blank" class="questionLink" rel="nofollow" href="' + url + '">' + url + '</a>');
+    // }
+    console.log("returning: ", answers);
     return answers;
   },
   allowAnonym() {

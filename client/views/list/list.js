@@ -389,29 +389,30 @@ Template.list.helpers({
             questions[i].replyText = 'replies';
           }
           // }
-          answers.reverse();
-          questions[i].answer = answers;
-          for (let a = 0; a < questions[i].answer.length; a++) {
-            // if(a > 2) {
-            questions[i].answer[a].isHidden = true;
-            // }
-            questions[i].answer[a].text = questions[i].answer[a].text.replace(/\B(@\S+)/g, '<strong>$1</strong>');
-            questions[i].answer[a].text = questions[i].answer[a].text.replace(urlRegex, (url) => {
-              let hasPeren = false;
-              let fullURL = url;
-              if (url.charAt(url.length - 1) === ')') {
-                url = url.substring(0, url.length - 1);
-                hasPeren = true;
-              }
-              if (url.indexOf('http://') === -1 || url.indexOf('https://') === -1) {
-                fullURL = 'http://' + url;
-              }
-              if (!hasPeren) {
-                return '<a target="_blank" class="questionLink" rel="nofollow" href="' + fullURL + '">' + url + '</a>';
-              }
-              return '<a target="_blank" class="questionLink" rel="nofollow" href="' + fullURL + '">' + url + '</a>)';
-            });
-          }
+          
+          // answers.reverse();
+          // questions[i].answer = answers;
+          // for (let a = 0; a < questions[i].answer.length; a++) {
+          //   // if(a > 2) {
+          //   questions[i].answer[a].isHidden = true;
+          //   // }
+          //   questions[i].answer[a].text = questions[i].answer[a].text.replace(/\B(@\S+)/g, '<strong>$1</strong>');
+          //   questions[i].answer[a].text = questions[i].answer[a].text.replace(urlRegex, (url) => {
+          //     let hasPeren = false;
+          //     let fullURL = url;
+          //     if (url.charAt(url.length - 1) === ')') {
+          //       url = url.substring(0, url.length - 1);
+          //       hasPeren = true;
+          //     }
+          //     if (url.indexOf('http://') === -1 || url.indexOf('https://') === -1) {
+          //       fullURL = 'http://' + url;
+          //     }
+          //     if (!hasPeren) {
+          //       return '<a target="_blank" class="questionLink" rel="nofollow" href="' + fullURL + '">' + url + '</a>';
+          //     }
+          //     return '<a target="_blank" class="questionLink" rel="nofollow" href="' + fullURL + '">' + url + '</a>)';
+          //   });
+          // }
         }
         const thresh = this.threshold ? this.threshold : this.threshhold;
         if (i < thresh) {
