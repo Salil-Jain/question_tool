@@ -12,20 +12,12 @@
       <p class="hiddenMessage showreplies link" id="{{_id}}">show {{answersCount}}</p>
       {{/if}}
       <p class="hiddenMessage showreplies link {{#unless hasAnswers}}fullWidth{{/unless}}" id="{{_id}}">Reply</p>
-      {{#if popular}}
-        <div class="corner-ribbon top-right sticky red">hot</div>
-      {{/if}}
       {{#if new}}
         <div class="corner-ribbon top-right sticky green">new</div>
       {{/if}}
-      <!-- <div class="tagIcon">
-        {{#if popular}}
-        <span class="image-icon popular-icon" title="Popular"></span>
-        {{/if}}
-        {{#if new}}
-          <span class="image-icon new-icon" title="New"></span>
-        {{/if}}
-      </div> -->
+      {{#if popular}}
+        <div class="corner-ribbon top-right sticky red">hot</div>
+      {{/if}}
       <div class="bottomquestiondiv">
         <div class="asked-by">
           {{#if poster}}
