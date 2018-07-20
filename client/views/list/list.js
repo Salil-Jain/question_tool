@@ -349,7 +349,7 @@ Template.list.helpers({
             hasPeren = true;
           }
           let fullURL = url;
-          if (url.indexOf('http://') === -1 || url.indexOf('https://') === -1) {
+          if (url.indexOf('http://') === -1 && url.indexOf('https://') === -1) {
             fullURL = 'http://' + url;
           }
           if (!hasPeren) {

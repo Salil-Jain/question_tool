@@ -55,7 +55,7 @@ Template.answers.helpers({
           url = url.substring(0, url.length - 1);
           hasPeren = true;
         }
-        if (url.indexOf('http://') === -1 || url.indexOf('https://') === -1) {
+        if (url.indexOf('http://') === -1 && url.indexOf('https://') === -1) {
           fullURL = 'http://' + url;
         }
         if (!hasPeren) {
