@@ -560,7 +560,36 @@ Meteor.methods({
         }
       });
     } else {
-      keys = [{ name: 'votedbefore' }];
+      const instanceid = Questions.findOne({ _id: questionid }).instanceid;
+      Questions.update({
+        _id: questionid,
+      }, {
+        $set: {
+          lasttouch: new Date().getTime() - 1000,
+        },
+        $inc: {
+          votes: -1,
+        },
+      }, (error, count, status) => {
+        if (error) {
+          // If error, set keys to the error object
+          keys = error;
+        } else {
+          // If successful, insert vote into the votes DB
+          Votes.remove({
+            ip: ip,
+          }, (e, id) => {
+            if (e) {
+              // If error, set keys to the error object
+              keys = e;
+            } else {
+              console.log("successfully reverted");
+            }
+          });
+        }
+      });
+      // return 'revertUpvote';
+      // keys = [{ name: 'votedbefore' }];
     }
     if (keys) {
       return keys;
