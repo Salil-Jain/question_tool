@@ -578,6 +578,7 @@ Meteor.methods({
           // If successful, insert vote into the votes DB
           Votes.remove({
             ip: ip,
+            qid: questionid,
           }, (e, id) => {
             if (e) {
               // If error, set keys to the error object
