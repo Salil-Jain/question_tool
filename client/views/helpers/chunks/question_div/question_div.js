@@ -40,8 +40,15 @@ Template.question_div.helpers({
 });
 
 Template.question_div.events({
-  'click .sharing': function (event, template) {
-    $(event.target.children).toggle();
+  'click #shareImg': function (event, template) {
+    const shareIcons = event.target.previousElementSibling;
+    console.log("shareifcons: ", shareIcons);
+    if (shareIcons.style.display === 'none') {
+      $(event.target).css({'transform' : 'rotate('+ -30 +'deg)'});
+    } else {
+      $(event.target).css({'transform' : 'rotate('+ 0 +'deg)'});
+    }
+    $(event.target.previousElementSibling).toggle();
   },
   'click .showreplies': function (event, template) {
     const parentNode = document.getElementById('main-wrapper');

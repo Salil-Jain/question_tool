@@ -375,6 +375,7 @@ $popular-question-color: #f1c40f;
 .sharing {
   cursor: pointer;
   float: right;
+  /*min-width: 30px;*/
   margin-right: 1em;
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -451,14 +452,15 @@ $popular-question-color: #f1c40f;
 .shareDropdown {
   display: none;
   position: absolute;
-  bottom: -35px;
+  bottom: 7px;
+  right: 40px;
   background-color: #fff;
   z-index: 1;
-  width: 32px;
+  /*width: 32px;*/
   text-align: center;
   -webkit-animation-duration: 4s;
   animation-duration: 4s;
-  border: 1px solid;
+  /*border: 1px solid;*/
 
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
