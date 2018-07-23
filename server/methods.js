@@ -527,71 +527,77 @@ Meteor.methods({
     } else {
       votes = Votes.findOne({ qid: questionid, ip });
     }
-
-    if (!votes) {
-      const instanceid = Questions.findOne({ _id: questionid }).instanceid;
-      // If they haven't voted, increment the given quesiton's vote # by 1 and update the lasttouch
-      Questions.update({
-        _id: questionid,
-      }, {
-        $set: {
-          lasttouch: new Date().getTime() - 1000,
-        },
-        $inc: {
-          votes: 1,
-        },
-      }, (error, count, status) => {
-        if (error) {
-          // If error, set keys to the error object
-          keys = error;
-        } else {
-          // If successful, insert vote into the votes DB
-          Votes.insert({
-            qid: questionid,
-            uid: this.userId,
-            ip,
-            instanceid,
-          }, (e, id) => {
-            if (e) {
-              // If error, set keys to the error object
-              keys = e;
-            }
-          });
-        }
-      });
-    } else {
-      const instanceid = Questions.findOne({ _id: questionid }).instanceid;
-      Questions.update({
-        _id: questionid,
-      }, {
-        $set: {
-          lasttouch: new Date().getTime() - 1000,
-        },
-        $inc: {
-          votes: -1,
-        },
-      }, (error, count, status) => {
-        if (error) {
-          // If error, set keys to the error object
-          keys = error;
-        } else {
-          // If successful, insert vote into the votes DB
-          Votes.remove({
-            ip: ip,
-            qid: questionid,
-          }, (e, id) => {
-            if (e) {
-              // If error, set keys to the error object
-              keys = e;
-            } else {
-              console.log("successfully reverted");
-            }
-          });
-        }
-      });
-      // return 'revertUpvote';
-      // keys = [{ name: 'votedbefore' }];
+    if (votes) {
+      return "alreadyVoted";
     }
+    const instanceid = Questions.findOne({ _id: questionid }).instanceid;
+    // If they haven't voted, increment the given quesiton's vote # by 1 and update the lasttouch
+    Questions.update({
+      _id: questionid,
+    }, {
+      $set: {
+        lasttouch: new Date().getTime() - 1000,
+      },
+      $inc: {
+        votes: 1,
+      },
+    }, (error, count, status) => {
+      if (error) {
+        // If error, set keys to the error object
+        keys = error;
+      } else {
+        // If successful, insert vote into the votes DB
+        Votes.insert({
+          qid: questionid,
+          uid: this.userId,
+          ip,
+          instanceid,
+        }, (e, id) => {
+          if (e) {
+            // If error, set keys to the error object
+            keys = e;
+          }
+        });
+      }
+    });
+    if (keys) {
+      return keys;
+    }
+    return true;
+  },
+  unvote(questionid) {
+    let keys;
+    const ip = this.connection.clientAddress;
+
+    const instanceid = Questions.findOne({ _id: questionid }).instanceid;
+    Questions.update({
+      _id: questionid,
+    }, {
+      $set: {
+        lasttouch: new Date().getTime() - 1000,
+      },
+      $inc: {
+        votes: -1,
+      },
+    }, (error, count, status) => {
+      if (error) {
+        // If error, set keys to the error object
+        keys = error;
+      } else {
+        // If successful, insert vote into the votes DB
+        Votes.remove({
+          ip: ip,
+          qid: questionid,
+        }, (e, id) => {
+          if (e) {
+            // If error, set keys to the error object
+            keys = e;
+          } else {
+            console.log("successfully reverted");
+          }
+        });
+      }
+    });
     if (keys) {
       return keys;
     }

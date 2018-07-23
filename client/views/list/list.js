@@ -480,8 +480,15 @@ Template.list.helpers({
 Template.list.events({
   // When the vote button is clicked...
   'click .voteright': function (event, template) {
-    Meteor.call('vote', event.currentTarget.id, (error, result) => {
+    const questionId = event.currentTarget.id;
+    Meteor.call('vote', questionId, (error, result) => {
       // If the result is an object, there was an error
+      if (result === 'alreadyVoted') {
+        Meteor.call('unvote', questionId, (e, r) => {
+          if (!e)
+            console.log("unvoted");
+        });
+      }
       if (typeof result === 'object') {
         // Store an object of the error names and codes
         const errorCodes = {
