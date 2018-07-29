@@ -1,4 +1,5 @@
 import { Votes, Answers, Instances, Questions } from '/lib/common.js';
+import $ from 'jquery'
 
 Template.question_div.helpers({
   isPoster() {
@@ -18,7 +19,7 @@ Template.question_div.helpers({
     });
     return answers.fetch().length > 0;
   },
-  
+
   answersCount() {
     const count = Answers.find({ qid: this._id }).fetch().length;
     const base = 'repl';
@@ -42,11 +43,11 @@ Template.question_div.helpers({
 Template.question_div.events({
   'click #shareImg': function (event, template) {
     const shareIcons = event.target.previousElementSibling;
-    // if (shareIcons.style.display === 'none') {
-    //   $(event.target).css({'transform' : 'rotate('+ -30 +'deg)'});
-    // } else {
-    //   $(event.target).css({'transform' : 'rotate('+ 0 +'deg)'});
-    // }
+    if (shareIcons.style.display === 'none') {
+      $('#share-' + this._id).addClass('shareExpanded');
+    } else {
+      $('#share-' + this._id).removeClass('shareExpanded');
+    }
     $(event.target.previousElementSibling).toggle();
   },
   'click .showreplies': function (event, template) {

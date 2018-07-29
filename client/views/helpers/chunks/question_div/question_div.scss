@@ -94,7 +94,7 @@ $popular-question-color: #f1c40f;
 .bottomquestiondiv {
   bottom: 0px;
   position: absolute;
-  height: 50px;
+  height: 45px;
 }
 
 .asked-by {
@@ -102,7 +102,10 @@ $popular-question-color: #f1c40f;
 	font-size: 14px;
   text-align: right;
   margin-bottom: 5px;
-  padding-right: 14px;
+  padding-right: 10px;
+  display: inline-block;
+  position: absolute;
+  right: 0px;
 
   .poser {
     color: #888;
@@ -374,9 +377,11 @@ $popular-question-color: #f1c40f;
 
 .sharing {
   cursor: pointer;
-  float: right;
+  /*float: right;*/
+  display: inline-block;
   /*min-width: 30px;*/
   margin-right: 1em;
+  margin-left: 4px;
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
@@ -390,6 +395,15 @@ $popular-question-color: #f1c40f;
       margin-left: 4px;
     }
   }
+}
+
+.shareExpanded {
+  border: 1px solid #aaa;
+  width: 45px;
+  /*padding-left: 5px;*/
+  border-radius: 0px 10px 10px 0px;
+  box-shadow: 0 0 2px #aaa;
+  height: 20px;
 }
 
 .image-icon {
@@ -452,8 +466,7 @@ $popular-question-color: #f1c40f;
 .shareDropdown {
   display: none;
   position: absolute;
-  bottom: 7px;
-  right: 40px;
+  left: 30px;
   background-color: #fff;
   z-index: 1;
   /*width: 32px;*/
@@ -500,8 +513,8 @@ $popular-question-color: #f1c40f;
 }
 
 .corner-ribbon.top-right{
-  top: 4px;
-  right: -22px;
+  top: 3px;
+  right: -23px;
   left: auto;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
@@ -509,3 +522,7 @@ $popular-question-color: #f1c40f;
 
 .corner-ribbon.red{background: #e43;}
 .corner-ribbon.green{background: #2c7;}
+
+.mt-20 {
+  margin-top: 20px;
+}
