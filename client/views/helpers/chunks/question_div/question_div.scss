@@ -42,11 +42,11 @@ $popular-question-color: #f1c40f;
   }
 }
 
-.upvoteButton {
+/*.upvoteButton {
   width: 1.5em;
   text-align: center;
   background-color: #eee;
-}
+}*/
 
 .upvoteButton > a {
   margin-top: 10px;
@@ -58,7 +58,7 @@ $popular-question-color: #f1c40f;
 	padding: 8px 0.5em;
   /*margin-bottom: 12px;*/
   border-radius: $border-radius;
-  width: 19.5em;
+  width: 21em;
   word-break: break-word;
   overflow: hidden;
   /*left: 2em;*/
@@ -102,10 +102,10 @@ $popular-question-color: #f1c40f;
 	font-size: 14px;
   text-align: right;
   margin-bottom: 5px;
-  padding-right: 10px;
+  padding-right: 0px;
   display: inline-block;
   position: absolute;
-  right: 0px;
+  right: -8px;
 
   .poser {
     color: #888;
@@ -221,7 +221,8 @@ $popular-question-color: #f1c40f;
 	margin-top: 0;
 	font-weight: 600;
 	color: #333333;
-	margin-bottom: 4px;
+	margin-bottom: 6px;
+  margin-left: 20px;
 }
 
 .questionLink {
@@ -439,7 +440,7 @@ $popular-question-color: #f1c40f;
 	color: #fff;
   border-radius: 4px;
   margin-bottom: 50px;
-  width: 46%;
+  width: 46.5%;
   display: inline-block;
 }
 
@@ -526,3 +527,38 @@ $popular-question-color: #f1c40f;
 .mt-20 {
   margin-top: 20px;
 }
+
+#upvoteBtn {
+  width: 1.5em;
+  background-color: #eee;
+  display: inline-block;
+  position: absolute;
+  word-wrap: break-word;
+  left: 0em;
+  top: 0em;
+  text-align: center;
+  min-height: 50px;
+ /* height: 50px;
+  width: 100px;
+  background-color: #a00; */
+}
+
+.replyButtons {
+  width: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+  #upvoteBtn {
+    height: 100%!important;
+  }
+  .bottomquestiondiv {
+    margin-left: 20px;
+  }
+  .replyButtons {
+    margin-left: 20px;
+    width: 19.5em;
+  }
+  .asked-by {
+    padding-right: 15px;
+  }
+} 

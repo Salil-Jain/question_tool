@@ -1,17 +1,22 @@
 <template name="question_div">
   <div class="question-wrapper question-{{instanceid}} {{#if popular}}popular-question{{else}}{{age_marker}}{{/if}} {{#if isDisabled}}hidden-question{{/if}}">
-    <div class="upvoteButton">
+   <!--  <div class="upvoteButton">
       <a class="voteright {{shade}}" id="{{_id}}"><span class="triangle"></span><br>{{voteCount}}</a>
-    </div>
+    </div> -->
     <div id="{{_id}}" class="question">
-      <p class="questiontext">{{{text}}}</p>
+      <div id="upvoteBtn" class="upvoteBtn-{{_id}}">
+        <a class="voteright {{shade}}" id="{{_id}}"><span class="triangle"></span><br>{{voteCount}}</a>
+      </div>
+      <p class="questiontext" id="questiontext-{{_id}}">{{{text}}}</p>
       <!-- {{# if hasAnswers}}
         {{> answers_list}}
       {{/if}} -->
-      {{#if hasAnswers}}
-      <p class="hiddenMessage showreplies link" id="{{_id}}">show {{answersCount}}</p>
-      {{/if}}
-      <p class="hiddenMessage showreplies link {{#unless hasAnswers}}fullWidth{{/unless}}" id="{{_id}}">Reply</p>
+      <div class="replyButtons">
+        {{#if hasAnswers}}
+        <p class="hiddenMessage showreplies link" id="{{_id}}">show {{answersCount}}</p>
+        {{/if}}
+        <p class="hiddenMessage showreplies link {{#unless hasAnswers}}fullWidth{{/unless}}" id="{{_id}}">Reply</p>
+      </div>
       {{#if new}}
         <div class="corner-ribbon top-right sticky green">new</div>
       {{/if}}

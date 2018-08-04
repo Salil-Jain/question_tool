@@ -1,6 +1,15 @@
 import { Votes, Answers, Instances, Questions } from '/lib/common.js';
 import $ from 'jquery'
 
+Template.question_div.onRendered(() => {
+  const thisId = Template.instance().data._id;
+  const divHeight = $('#questiontext-' + thisId).height();
+  if (divHeight < 40) {
+    $('#questiontext-' + thisId).css('height', 40);
+  }
+  $('.upvoteBtn-' + thisId).css('height', divHeight + 10);
+});
+
 Template.question_div.helpers({
   isPoster() {
     return Meteor.user() && Meteor.user().emails[0].address === this.email && this.posterLoggedIn;
