@@ -61,7 +61,13 @@ Template.question_div.events({
   },
   'click .showreplies': function (event, template) {
     const parentNode = document.getElementById('main-wrapper');
-    popoverTemplate = Blaze.renderWithData(Template.answers, template.data._id, parentNode);
+    let dataObj;
+    if ($(event.target).hasClass('toReplyArea')) {
+      dataObj = { questionId: template.data._id, scrollToBottom: true };
+    } else {
+      dataObj = { questionId: template.data._id, scrollToBottom: false };
+    }
+    popoverTemplate = Blaze.renderWithData(Template.answers, dataObj, parentNode);
   },
   'click .adminquestionmodify': function (event, template) {
     const parentNode = document.getElementById('nav');

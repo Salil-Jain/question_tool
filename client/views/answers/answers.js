@@ -9,24 +9,29 @@ Template.answers.onRendered(() => {
   $('.formcontainer').hide().fadeIn(400);
   $('#darker').hide().fadeIn(400);
   $('#replyadvancedcheck')[0].style.display = 'none';
+  if (Template.currentData().scrollToBottom) {
+    $('.replycontainer').animate({
+      scrollTop: $('.replyBox').offset().top
+    });
+  }
 });
 
 Template.answers.helpers({
   returnID() {
-    return Template.currentData();
+    return Template.currentData().questionId;
   },
   replyCount() {
     return Template.instance().replyCount.get();
   },
   responseLength() {
     // to return the maximum response length
-    const id = Template.currentData();
+    const id = Template.currentData().questionId;
     const instanceId = Questions.findOne({ _id: id }).instanceid;
     const toReturn = Instances.findOne({_id: instanceId}).max_response;
     return toReturn;
   },
   question() {
-    const id = Template.currentData();
+    const id = Template.currentData().questionId;
     return Questions.findOne({ _id: id });
   },
   date_format(timeorder) {
@@ -36,7 +41,7 @@ Template.answers.helpers({
     return moment(timeorder).fromNow();
   },
   answers() {
-    const id = Template.currentData();
+    const id = Template.currentData().questionId;
 
     const answers = Answers.find({
       qid: id,
@@ -49,8 +54,6 @@ Template.answers.helpers({
       answers[a].text = answers[a].text.replace(urlRegex, (url) => {
         let hasPeren = false;
         let fullURL = url;
-        console.log("url: ", url);
-        console.log("fullURL: ", fullURL);
         if (url.charAt(url.length - 1) === ')') {
           url = url.substring(0, url.length - 1);
           hasPeren = true;
@@ -72,11 +75,10 @@ Template.answers.helpers({
     //   answers[a].text = answers[a].text.replace(urlRegex, url =>
     //     '<a target="_blank" class="questionLink" rel="nofollow" href="' + url + '">' + url + '</a>');
     // }
-    console.log("returning: ", answers);
     return answers;
   },
   allowAnonym() {
-    const id = Template.currentData();
+    const id = Template.currentData().questionId;
     const instanceId = Questions.findOne({ _id: id }).instanceid;
     const toReturn = Instances.findOne({_id: instanceId}).anonymous;
     return toReturn;

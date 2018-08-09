@@ -15,7 +15,7 @@
         {{#if hasAnswers}}
         <p class="hiddenMessage showreplies link" id="{{_id}}">show {{answersCount}}</p>
         {{/if}}
-        <p class="hiddenMessage showreplies link {{#unless hasAnswers}}fullWidth{{/unless}}" id="{{_id}}">Reply</p>
+        <p class="hiddenMessage showreplies link toReplyArea {{#unless hasAnswers}}fullWidth{{/unless}}" id="{{_id}}">Reply</p>
       </div>
       {{#if new}}
         <div class="corner-ribbon top-right sticky green">new</div>
